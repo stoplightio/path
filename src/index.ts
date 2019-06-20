@@ -1,3 +1,4 @@
+export * from './dirname';
 export * from './isAbsolute';
 export * from './join';
 export * from './normalize';

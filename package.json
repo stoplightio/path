@@ -35,7 +35,9 @@
     "yalc.watch": "nodemon --watch 'src/**/*' --exec 'yarn yalc'"
   },
   "peerDependencies": {},
-  "dependencies": {},
+  "dependencies": {
+    "vscode-uri": "^2.0.2"
+  },
   "devDependencies": {
     "@stoplight/scripts": "7.0.0",
     "@types/jest": "24.x.x",

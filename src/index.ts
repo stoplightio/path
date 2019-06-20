@@ -4,4 +4,4 @@ export * from './join';
 export * from './normalize';
 export * from './startsWithWindowsDrive';
 export * from './toFSPath';
-export { extname } from 'path';
+export { extname, sep, relative } from 'path';

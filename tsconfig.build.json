@@ -11,6 +11,7 @@
   ],
   "compilerOptions": {
     "outDir": "dist",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowJs": true
   }
 }

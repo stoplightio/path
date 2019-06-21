@@ -28,7 +28,7 @@ RemotePath
     HttpProtocol
       = raw:"http://"i {
       return 'http'
-	}
+    }
     
     HttpsProtocol
       = raw:"https://"i {
@@ -51,10 +51,10 @@ FileSchemaPath
     }
   }
 
-    FileProtocol
-      = raw:("file://"i / "file:"i) {
-      return 'file'
-    }
+  FileProtocol
+    = raw:("file://"i / "file:"i) {
+    return 'file'
+  }
 
 AbsolutePath
   = root:Root path:PathWrapper {
@@ -72,30 +72,31 @@ AbsolutePath
     = PosixRoot
     / WindowsRoot
 
-      PosixRoot
-        = Sep {
-          return {
-            drive: null
-          }
+    PosixRoot
+      = Sep {
+        return {
+          drive: null
         }
+      }
 
-      WindowsRoot
-        = drive:[A-Za-z] ":" Sep {
+    WindowsRoot
+      = drive:[A-Za-z] ":" Sep {
         return {
           drive: drive.toUpperCase() + ':'
         }
       }
 
 RelativePath
-  = Cwd path:PathWrapper { return {
-    protocol: 'file',
-    implicitProtocol: true,
-    origin: null,
-    absolute: false,
-    drive: null,
-    ...path
+  = Cwd path:PathWrapper {
+    return {
+      protocol: 'file',
+      implicitProtocol: true,
+      origin: null,
+      absolute: false,
+      drive: null,
+      ...path
+    }
   }
-}
 
 PathWrapper
   = path:PathSeq {
@@ -134,13 +135,13 @@ NotSep
 
 Base
   = base:StartWithDotWord Dot ext:PseudoExt {
-  	return {
+    return {
       basename: ext.base !== null ? base + '.' + ext.base : base,
       ext: ext.ext
     }
   }
   / base:NotDotWord Dot ext:PseudoExt {
-  	return {
+    return {
       basename: ext.base !== null ? base + '.' + ext.base : base,
       ext: ext.ext
     }
@@ -150,7 +151,7 @@ Base
 
 PseudoExt
   = base:(NotDotWord / "") Dot ext:PseudoExt {
-  	return {
+    return {
       base: ext.base !== null ? base + '.' + ext.base : base,
       ext: ext.ext
     }

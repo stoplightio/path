@@ -1,4 +1,4 @@
-import { normalize } from '../normalize';
+import { normalize } from '../';
 
 describe('normalize', () => {
   it('replaces Windows-like slashes with POSIX-compatible ones', () => {
@@ -13,5 +13,9 @@ describe('normalize', () => {
     expect(normalize('/foo/bar/boom/../../baz/.././a')).toEqual('/foo/a');
     expect(normalize('/foo/bar/boom/../a')).toEqual('/foo/bar/a');
     expect(normalize('/foo/bar/boom/..')).toEqual('/foo/bar');
+  });
+
+  it('treats URLs as file URIs', () => {
+    expect(normalize('https://foo.com/baz/bar')).toEqual('https:/foo.com/baz/bar');
   });
 });

@@ -1,8 +1,10 @@
-export * from './basename';
-export * from './dirname';
-export * from './isAbsolute';
-export * from './join';
+import * as path from 'path';
+import { posixify } from './posixify';
+
+const { dirname, extname, join, relative, sep, resolve, parse } = posixify(path);
+export { dirname, extname, join, relative, sep, resolve, parse };
+
 export * from './normalize';
 export * from './startsWithWindowsDrive';
 export * from './toFSPath';
-export { extname, sep, relative, resolve } from 'path';
+export * from './isAbsolute';

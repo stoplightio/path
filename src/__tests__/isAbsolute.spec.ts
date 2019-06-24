@@ -1,4 +1,4 @@
-import { isAbsolute } from '../isAbsolute';
+import { isAbsolute } from '../';
 
 describe('isAbsolute', () => {
   it.each([
@@ -15,7 +15,10 @@ describe('isAbsolute', () => {
     expect(isAbsolute(filepath)).toBe(true);
   });
 
-  it.each(['foo/bar', 'test', ''])('treats %s path as non-absolute', filepath => {
-    expect(isAbsolute(filepath)).toBe(false);
-  });
+  it.each(['foo/bar', 'test', '', 'https://foo.com/bar', 'http://localhost', 'http://boo.com'])(
+    'treats %s path as non-absolute',
+    filepath => {
+      expect(isAbsolute(filepath)).toBe(false);
+    },
+  );
 });

@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'path-browserify';
 import * as pathURL from './path-url';
 import { posixify } from './posixify';
 

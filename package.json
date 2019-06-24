@@ -37,6 +37,7 @@
   "peerDependencies": {},
   "dependencies": {
     "urijs": "^1.19.1",
+    "path-browserify": "^1.0.0",
     "vscode-uri": "^2.0.2"
   },
   "devDependencies": {

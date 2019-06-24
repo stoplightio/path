@@ -1,10 +1,17 @@
 // https://github.com/isomorphic-git/isomorphic-git/blob/master/src/utils/normalizePath.js
 
+import * as URI from 'urijs';
+import { isURL } from './isURL';
+
 const PARENT_REGEXP = /[^/]+\/\.\.(?:\/|$)/g;
 
-export function normalize(filepath: string) {
+export function normalize(uri: string) {
+  if (isURL(uri)) {
+    return new URI(uri).normalize().href();
+  }
+
   PARENT_REGEXP.lastIndex = 0;
-  let normalizedPath = filepath
+  let normalizedPath = uri
     .replace(/\\/g, '/') // Replace '\' with '/' (this differs from isomorphic-git)
     .replace(/\/\.\//g, '/') // Replace '/./' with '/'
     .replace(/\/{2,}/g, '/') // Replace consecutive '/'

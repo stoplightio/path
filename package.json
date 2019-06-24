@@ -36,11 +36,13 @@
   },
   "peerDependencies": {},
   "dependencies": {
+    "urijs": "^1.19.1",
     "vscode-uri": "^2.0.2"
   },
   "devDependencies": {
     "@stoplight/scripts": "7.0.0",
     "@types/jest": "24.x.x",
+    "@types/urijs": "^1.19.1",
     "jest": "24.x.x",
     "nodemon": "1.x.x",
     "prettier": "1.x.x",

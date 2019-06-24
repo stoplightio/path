@@ -6,6 +6,6 @@ describe('join', () => {
   });
 
   it('treats URLs as file URIs', () => {
-    expect(join('http://', 'foo', 'com')).toEqual('http:/foo/com');
+    expect(join('https://foo.test', 'com', 'baz')).toEqual('/com/baz');
   });
 });

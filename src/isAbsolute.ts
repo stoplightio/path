@@ -1,3 +1,4 @@
+import * as URI from 'urijs';
 import { startsWithWindowsDrive } from './startsWithWindowsDrive';
 
 const PATH_SEPARATOR_REGEXP = /[/\\]/;
@@ -6,5 +7,10 @@ const PATH_SEPARATOR_REGEXP = /[/\\]/;
 export function isAbsolute(filepath: string) {
   if (filepath.length === 0) return false;
 
-  return PATH_SEPARATOR_REGEXP.test(filepath[0]) || startsWithWindowsDrive(filepath);
+  try {
+    return PATH_SEPARATOR_REGEXP.test(filepath[0]) || startsWithWindowsDrive(filepath) || URI(filepath).is('absolute');
+  } catch {
+    // merely to catch any URIJS exception that might (or might not) be thrown
+    return false;
+  }
 }

@@ -15,7 +15,8 @@ describe('normalize', () => {
     expect(normalize('/foo/bar/boom/..')).toEqual('/foo/bar');
   });
 
-  it('treats URLs as file URIs', () => {
-    expect(normalize('https://foo.com/baz/bar')).toEqual('https:/foo.com/baz/bar');
+  it('handles URLs', () => {
+    expect(normalize('https://foo.com/baz/bar')).toEqual('https://foo.com/baz/bar');
+    expect(normalize('htTps://foo.com/baz/bar')).toEqual('https://foo.com/baz/bar');
   });
 });

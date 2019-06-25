@@ -1,7 +1,7 @@
-import { joinPaths } from 'urijs';
 import * as URI from 'urijs';
 
-export const join = (...parts: string[]) => joinPaths(...parts).href();
+export const join = (...parts: string[]) => new URI(parts.join('/')).normalize().href();
+
 export const resolve = (...pathSegments: string[]) =>
   URI(pathSegments[0])
     .absoluteTo(pathSegments[1])

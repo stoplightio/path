@@ -18,7 +18,7 @@ describe('isAbsolute', () => {
     expect(isAbsolute(filepath)).toBe(true);
   });
 
-  it.each(['foo/bar', 'test', '', 'www.foo.com'])('treats %s path as non-absolute', filepath => {
+  it.each(['foo/bar', 'test', '', 'www.foo.com', './foo/bar'])('treats %s path as non-absolute', filepath => {
     expect(isAbsolute(filepath)).toBe(false);
   });
 });

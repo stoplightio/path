@@ -18,5 +18,6 @@ describe('normalize', () => {
   it('handles URLs', () => {
     expect(normalize('https://foo.com/baz/bar')).toEqual('https://foo.com/baz/bar');
     expect(normalize('htTps://foo.com/baz/bar')).toEqual('https://foo.com/baz/bar');
+    expect(normalize('htTps://foo.com/baz/bar/../foo')).toEqual('https://foo.com/baz/foo');
   });
 });

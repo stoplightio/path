@@ -1,7 +1,7 @@
 import { isURL } from './isURL';
 import { normalize } from './normalize';
 
-export const posixify = <T extends object = object, A extends Partial<T> = Partial<T>>(obj: T, fallback: A): T => {
+export const urlify = <T extends object = object, A extends Partial<T> = Partial<T>>(obj: T, fallback: A): T => {
   const target = { ...obj };
 
   for (const key of Reflect.ownKeys(obj)) {

@@ -1,6 +1,6 @@
-import { posixify } from '../posixify';
+import { urlify } from '../urlify';
 
-describe('posixify', () => {
+describe('urlify', () => {
   it('wraps all obj methods', () => {
     const obj = {
       test() {
@@ -10,7 +10,7 @@ describe('posixify', () => {
       baz: (d: unknown) => true,
     };
 
-    const result = posixify(obj, obj);
+    const result = urlify(obj, obj);
     expect(result).not.toStrictEqual(obj);
     expect(result).toMatchObject({
       test: expect.any(Function),
@@ -23,7 +23,7 @@ describe('posixify', () => {
       test: () => 'c:\\foo\\baz',
     };
 
-    const result = posixify(obj, obj);
+    const result = urlify(obj, obj);
     expect(result.test()).toEqual('c:/foo/baz');
   });
 
@@ -32,7 +32,7 @@ describe('posixify', () => {
       test: () => false,
     };
 
-    const result = posixify(obj, obj);
+    const result = urlify(obj, obj);
     expect(result.test()).toEqual(false);
   });
 
@@ -43,7 +43,7 @@ describe('posixify', () => {
       c: null,
     };
 
-    expect(posixify({ ...obj }, { ...obj })).toStrictEqual(obj);
+    expect(urlify({ ...obj }, { ...obj })).toStrictEqual(obj);
   });
 
   it('includes non-enumerable properties', () => {
@@ -52,7 +52,7 @@ describe('posixify', () => {
       value: 2,
     });
 
-    expect(posixify(obj, obj)).toHaveProperty('a', 2);
+    expect(urlify(obj, obj)).toHaveProperty('a', 2);
   });
 
   it('makes use of alternative method if url is detected', () => {
@@ -63,7 +63,7 @@ describe('posixify', () => {
       test: () => 'foo.com',
     };
 
-    const result = posixify(obj, altObj);
+    const result = urlify(obj, altObj);
     expect(result.test('http://baz.com')).toEqual('foo.com');
   });
 
@@ -72,7 +72,7 @@ describe('posixify', () => {
       test: (a: string) => 'http://baz.com',
     };
 
-    const result = posixify(obj, {});
+    const result = urlify(obj, {});
     expect(() => result.test('http://baz.com')).toThrow();
   });
 });

@@ -1,8 +1,8 @@
 import * as path from 'path-browserify';
 import * as pathURL from './path-url';
-import { posixify } from './posixify';
+import { urlify } from './urlify';
 
-const { dirname, extname, join, relative, sep, resolve, parse } = posixify(path, pathURL);
+const { dirname, extname, join, relative, sep, resolve, parse } = urlify(path, pathURL);
 export { dirname, extname, join, relative, sep, resolve, parse };
 
 export * from './normalize';

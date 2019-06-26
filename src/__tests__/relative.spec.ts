@@ -7,11 +7,11 @@ describe('relative', () => {
   });
 
   it('handles Windows URIs', () => {
-    expect(relative('c:\\test\\baz', 'C:\\test\\foo')).toEqual('../C:/test/foo');
+    expect(relative('c:\\test\\baz', 'C:\\test\\foo')).toEqual('../../../C:/test/foo');
   });
 
   it('handles mixed slashes', () => {
-    expect(relative('/test\\baz', '/test\\foo')).toEqual('../test/foo');
+    expect(relative('/test\\baz', '/test\\foo')).toEqual('../foo');
   });
 
   it('handles URLs', () => {

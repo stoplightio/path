@@ -7,8 +7,8 @@ export const urlify = <T extends object = object, A extends Partial<T> = Partial
   for (const key of Reflect.ownKeys(obj)) {
     if (typeof obj[key] === 'function') {
       const fn = obj[key];
-      target[key] = function() {
-        if (arguments.length > 0 && isURL(arguments[0])) {
+      target[key] = function(...args: any) {
+        if (args.length > 0 && isURL(args[0])) {
           if (key in fallback) {
             return fallback[key].apply(fallback, arguments);
           }
@@ -16,7 +16,7 @@ export const urlify = <T extends object = object, A extends Partial<T> = Partial
           throw new Error('Method not implemented');
         }
 
-        const result = fn.apply(this, arguments);
+        const result = fn.apply(this, normalizeSlashes(args));
         if (typeof result === 'string') {
           return normalize(result);
         }
@@ -30,3 +30,13 @@ export const urlify = <T extends object = object, A extends Partial<T> = Partial
 
   return target;
 };
+
+function normalizeSlashes(args: unknown[]) {
+  return args.map(arg => {
+    if (typeof arg === 'string') {
+      return normalize(arg);
+    } else {
+      return arg;
+    }
+  });
+}

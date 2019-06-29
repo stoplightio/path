@@ -1,7 +1,12 @@
-// https://github.com/isomorphic-git/isomorphic-git/blob/master/src/utils/dirname.js
+import { format } from './format';
+import { normalizeParsed } from './normalize';
+import { parse } from './parse';
+
 export const dirname = (path: string) => {
-  const last = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\'))
-  if (last === -1) return '.';
-  if (last === 0) return '/';
-  return path.slice(0, last);
+  const parsed = normalizeParsed(parse(path));
+  if (parsed.path.length) {
+    parsed.ext = null;
+    parsed.basename = parsed.path.pop() as string;
+  }
+  return format(parsed);
 };

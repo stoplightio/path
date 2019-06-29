@@ -82,7 +82,7 @@ AbsolutePath
     WindowsRoot
       = drive:[A-Za-z] ":" Sep {
         return {
-          drive: drive.toUpperCase() + ':'
+          drive: drive.toLowerCase() + ':'
         }
       }
 
@@ -148,6 +148,7 @@ Base
   }
   / basename:StartWithDotWord { return { basename, ext: null } }
   / basename:NotDotWord { return { basename, ext: null } }
+  / basename:OnlyDotWord { return { basename, ext: null } }
 
 PseudoExt
   = base:(NotDotWord / "") Dot ext:PseudoExt {
@@ -172,3 +173,6 @@ NotDotWord
 
 StartWithDotWord
   = $(Dot+ NotDotWord)
+
+OnlyDotWord
+  = $ Dot+

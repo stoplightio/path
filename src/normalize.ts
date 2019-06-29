@@ -1,13 +1,26 @@
-// https://github.com/isomorphic-git/isomorphic-git/blob/master/src/utils/normalizePath.js
+import { format, IPath, parse } from '..';
+
 export function normalize(filepath: string) {
-  return filepath
-    .replace(/\\/g, '/') // Replace '\' with '/' (this differs from isomorphic-git)
-    .replace(/\/\.\//g, '/') // Replace '/./' with '/'
-    .replace(/\/{2,}/g, '/') // Replace consecutive '/'
-    .replace(/^\/\.$/, '/') // if path === '/.' return '/'
-    .replace(/^\.\/$/, '.') // if path === './' return '.'
-    .replace(/^\.\//, '') // Remove leading './'
-    .replace(/\/\.$/, '') // Remove trailing '/.'
-    .replace(/(.+)\/$/, '$1') // Remove trailing '/'
-    .replace(/^$/, '.') // if path === '' return '.'
+  return format(normalizeParsed(parse(filepath)));
+}
+
+export function normalizeParsed(parsed: IPath): IPath {
+  let path = parsed.path;
+  // Replace consecutive '/' and replace '/./' with '/'
+  path = path.filter(segment => segment !== '' && segment !== '.');
+  // Collapse '..' where possible
+  const stack = [];
+  for (const segment of path) {
+    if (segment === '..') {
+      if (stack.length) {
+        stack.pop();
+      } else {
+        stack.push(segment);
+      }
+    } else {
+      stack.push(segment);
+    }
+  }
+  parsed.path = stack;
+  return parsed;
 }

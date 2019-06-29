@@ -1,3 +1,6 @@
-const WINDOWS_DRIVE_REGEXP = /^[A-Za-z]:[/\\]/;
+import { parse } from './parse';
 
-export const startsWithWindowsDrive = (str: string) => str.length > 2 && WINDOWS_DRIVE_REGEXP.test(str);
+export const startsWithWindowsDrive = (str: string) => {
+  const parsed = parse(str);
+  return parsed.drive !== null;
+};

@@ -10,13 +10,13 @@ Path
   / RelativePath
 
 RemotePath
-  = protocol:RemoteProtocol origin:Origin Sep root:PosixRoot path:PathWrapper {
+  = protocol:RemoteProtocol origin:Origin root:PosixRoot path:PathWrapper {
     return {
       protocol,
       implicitProtocol: false,
       origin,
       absolute: true,
-      root,
+      ...root,
       ...path
     }
   }
@@ -36,7 +36,7 @@ RemotePath
     } 
     
   Origin
-    = $ NotSep
+    = $ NotSep+
     / "" { return null }
 
 FileSchemaPath

@@ -1,6 +1,6 @@
 import { IPath } from './types';
 
-export function format(parsed: IPath): string {
+export function format(parsed: Omit<IPath, 'implicitProtocol'>): string {
   let path = '';
   if (parsed.protocol === 'file') {
     path += parsed.drive || '/';

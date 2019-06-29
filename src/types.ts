@@ -8,9 +8,3 @@ export interface IPath {
   basename: string;
   ext: string | null;
 }
-
-declare module "./grammar" {
-  export = {
-    parse (string): IPath
-  }
-}

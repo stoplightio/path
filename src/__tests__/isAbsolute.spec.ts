@@ -12,6 +12,10 @@ describe('isAbsolute', () => {
     '//',
     '/var/lib/test/',
     '/var/bin.d',
+    'http://example.com/is/absolute',
+    'https://stoplight.io',
+    'file:///this/is/also/absolute',
+    'file://c:/and/this/is/../absolute',
   ])('treats %s path as absolute', filepath => {
     expect(isAbsolute(filepath)).toBe(true);
   });

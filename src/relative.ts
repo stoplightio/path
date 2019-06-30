@@ -15,26 +15,35 @@ export function relative(from: string, to: string): string {
   if (fromParsed.drive !== toParsed.drive) return format(toParsed);
 
   // Otherwise, remove the common parts.
+  const fromPath = fromParsed.path;
+  const toPath = toParsed.path;
   // NOTE: 'from' should always be a directory. Otherwise, it doesn't make a lot of sense.
-  if (fromParsed.base) fromParsed.path.push(fromParsed.base);
+  if (fromParsed.base) fromPath.push(fromParsed.base);
+  if (toParsed.base) toPath.push(toParsed.base);
 
   // Toss away common path segments
-  const maxIter = Math.max(fromParsed.path.length, toParsed.path.length);
+  const maxIter = Math.max(fromPath.length, toPath.length);
   for (let i = 0; i < maxIter; i++) {
-    if (fromParsed.path[0] === toParsed.path[0]) {
-      fromParsed.path = fromParsed.path.slice(1);
-      toParsed.path = toParsed.path.slice(1);
+    if (fromPath[0] === toPath[0]) {
+      fromPath.shift();
+      toPath.shift();
     } else {
       break;
     }
   }
   // Convert remaining path segments into '..'
-  for (const _ of fromParsed.path) {
-    toParsed.path.unshift('..');
+  for (const _ of fromPath) {
+    toPath.unshift('..');
   }
-  toParsed.drive = null;
-  toParsed.absolute = false;
-  toParsed.protocol = null;
 
-  return format(toParsed);
+  const newPath = {
+    origin: null,
+    drive: null,
+    absolute: false,
+    protocol: null,
+    base: toPath.pop() || '',
+    path: toPath,
+  };
+
+  return format(newPath);
 }

@@ -4,10 +4,13 @@ import { parse } from './parse';
 import { IPath } from './types';
 
 export const join = (...parts: string[]) => {
-  const parsedParts = parts.map(parse);
-  const newRoot: IPath = { ...parsedParts[0] };
+  // edge case
+  if (parts.length === 0) return '.';
 
+  const parsedParts = parts.map(parse);
   parsedParts[0].path.push(parsedParts[0].base);
+  parsedParts[0].base = '';
+  const newRoot: IPath = { ...parsedParts[0] };
 
   for (let i = 1; i < parsedParts.length; i++) {
     const parsed = parsedParts[i];

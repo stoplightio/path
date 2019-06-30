@@ -9,6 +9,7 @@ describe('isAbsolute', () => {
     'c:/foo/bar.json',
     '/home/test',
     '/',
+    '//',
     '/var/lib/test/',
     '/var/bin.d',
   ])('treats %s path as absolute', filepath => {

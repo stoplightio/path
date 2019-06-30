@@ -1,3 +1,4 @@
+export * from './basename';
 export * from './dirname';
 export * from './extname';
 export * from './format';

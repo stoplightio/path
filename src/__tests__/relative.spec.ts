@@ -1,4 +1,4 @@
-import { relative } from '../';
+import { relative } from '../relative';
 
 describe('relative', () => {
   describe('handles POSIX paths', () => {
@@ -19,7 +19,6 @@ describe('relative', () => {
       ${'/baz'}                      | ${'/baz-quux'}                  | ${'../baz-quux'}
     `("handles relative('$from', '$to')", ({ from, to, result }) => {
       expect(relative(from, to)).toEqual(result);
-      // expect(relative('~/test/bar', '~/test/foo')).toEqual('../foo');
     });
   });
 

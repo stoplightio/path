@@ -20,6 +20,17 @@ RemotePath
       ...path
     }
   }
+  / protocol:RemoteProtocol origin:Origin root:ImplicitRoot {
+    return {
+      protocol,
+      implicitProtocol: false,
+      origin,
+      absolute: true,
+      ...root,
+      path: [],
+      base: ''
+    }
+  }
 
   RemoteProtocol
     = HttpProtocol
@@ -86,6 +97,13 @@ AbsolutePath
         }
       }
 
+  ImplicitRoot
+    = "" {
+      return {
+        drive: null
+      }
+    }
+
 RelativePath
   = Cwd path:PathWrapper {
     return {
@@ -103,14 +121,13 @@ PathWrapper
     let base = path.pop();
     return {
       path,
-      ...base
+      base,
     }
   }
 
 PathSeq
-  = '\n' { return [ "" ] }
-  / base:Base '\n' { return [ base ] }
-  / head:Directory Sep tail:PathSeq { return [head, ...tail] }
+  = head:Directory Sep tail:PathSeq { return [head, ...tail] }
+  / head:Directory { return [head] }
 
 Cwd
   = ExplicitCwd
@@ -131,48 +148,4 @@ Sep
   / "\\"
 
 NotSep
-  = [^/\\\n]
-
-Base
-  = base:StartWithDotWord Dot ext:PseudoExt {
-    return {
-      basename: ext.base !== null ? base + '.' + ext.base : base,
-      ext: ext.ext
-    }
-  }
-  / base:NotDotWord Dot ext:PseudoExt {
-    return {
-      basename: ext.base !== null ? base + '.' + ext.base : base,
-      ext: ext.ext
-    }
-  }
-  / basename:StartWithDotWord { return { basename, ext: null } }
-  / basename:NotDotWord { return { basename, ext: null } }
-  / basename:OnlyDotWord { return { basename, ext: null } }
-
-PseudoExt
-  = base:(NotDotWord / "") Dot ext:PseudoExt {
-    return {
-      base: ext.base !== null ? base + '.' + ext.base : base,
-      ext: ext.ext
-    }
-  }
-  / ext:(NotDotWord / "") { return { base: null, ext } }
-
-Ext
-  = Dot ext:NotDot+ { return ext }
-
-Dot
-  = "."
-  
-NotDot
-  = [^/\\\n\.]
-
-NotDotWord
-  = $ NotDot+
-
-StartWithDotWord
-  = $(Dot+ NotDotWord)
-
-OnlyDotWord
-  = $ Dot+
+  = [^/\\]

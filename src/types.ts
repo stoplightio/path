@@ -1,10 +1,8 @@
 export interface IPath {
-  protocol: 'file' | 'http' | 'https';
-  implicitProtocol: boolean;
+  protocol: 'file' | 'http' | 'https' | null;
   origin: string | null;
   absolute: boolean;
   drive: string | null;
   path: string[];
-  basename: string;
-  ext: string | null;
+  base: string;
 }

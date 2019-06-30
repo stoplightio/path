@@ -1,6 +1,6 @@
 import { IPath } from './types';
 
-export function format(parsed: Omit<IPath, 'implicitProtocol'>): string {
+export function format(parsed: IPath): string {
   let path = '';
   if (parsed.absolute) {
     if (parsed.protocol === 'file') {
@@ -16,9 +16,6 @@ export function format(parsed: Omit<IPath, 'implicitProtocol'>): string {
     }
   }
   path += parsed.path.join('/');
-  path += '/' + parsed.basename;
-  if (parsed.ext) {
-    path += '.' + parsed.ext;
-  }
+  path += '/' + parsed.base;
   return path;
 }

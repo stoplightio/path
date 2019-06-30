@@ -15,7 +15,9 @@ export function format(parsed: IPath): string {
       }
     }
   }
-  path += parsed.path.join('/');
-  path += '/' + parsed.base;
+  const segments = parsed.path;
+  if (parsed.base) segments.push(parsed.base);
+  path += segments.join('/');
+  if (path === '') path = '.';
   return path;
 }

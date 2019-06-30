@@ -13,7 +13,6 @@ RemotePath
   = protocol:RemoteProtocol origin:Origin root:PosixRoot path:PathWrapper {
     return {
       protocol,
-      implicitProtocol: false,
       origin,
       absolute: true,
       ...root,
@@ -23,7 +22,6 @@ RemotePath
   / protocol:RemoteProtocol origin:Origin root:ImplicitRoot {
     return {
       protocol,
-      implicitProtocol: false,
       origin,
       absolute: true,
       ...root,
@@ -54,7 +52,6 @@ FileSchemaPath
   = protocol:FileProtocol root:Root path:PathWrapper {
     return {
       protocol,
-      implicitProtocol: false,
       origin: null,
       absolute: true,
       ...root,
@@ -71,7 +68,6 @@ AbsolutePath
   = root:Root path:PathWrapper {
   return {
     protocol: 'file',
-    implicitProtocol: true,
     origin: null,
     absolute: true,
     ...root,
@@ -107,8 +103,7 @@ AbsolutePath
 RelativePath
   = Cwd path:PathWrapper {
     return {
-      protocol: 'file',
-      implicitProtocol: true,
+      protocol: null,
       origin: null,
       absolute: false,
       drive: null,

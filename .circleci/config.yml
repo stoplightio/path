@@ -16,6 +16,7 @@ jobs:
           name: cc-before
           command: |
             ./cc-test-reporter before-build
+      - run: yarn build
       - run: yarn test.prod
       - run:
           name: cc-after

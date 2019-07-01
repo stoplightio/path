@@ -22,8 +22,8 @@ export function relative(from: string, to: string): string {
   if (toParsed.base) toPath.push(toParsed.base);
 
   // Toss away common path segments
-  const maxIter = Math.max(fromPath.length, toPath.length);
-  for (let i = 0; i < maxIter; i++) {
+  const maxIter = Math.min(fromPath.length, toPath.length);
+  for (let _ = 0; _ < maxIter; _++) {
     if (fromPath[0] === toPath[0]) {
       fromPath.shift();
       toPath.shift();
@@ -32,17 +32,17 @@ export function relative(from: string, to: string): string {
     }
   }
   // Convert remaining path segments into '..'
-  for (const _ of fromPath) {
-    toPath.unshift('..');
-  }
+  toPath.unshift(...fromPath.fill('..'));
+
+  const base = toPath.pop() || '';
 
   const newPath = {
     origin: null,
     drive: null,
     absolute: false,
     protocol: null,
-    base: toPath.pop() || '',
     path: toPath,
+    base,
   };
 
   return format(newPath);

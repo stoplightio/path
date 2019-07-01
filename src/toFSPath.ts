@@ -1,3 +1,1 @@
-import { normalize } from './normalize';
-
-export const toFSPath = (path: string) => normalize(path);
+export { normalize as toFSPath } from './normalize';

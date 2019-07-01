@@ -15,13 +15,9 @@ export function normalizeParsed(parsed: IPath): IPath {
   // Collapse '..' where possible
   const stack = [];
   for (const segment of path) {
-    if (segment === '..') {
-      if (stack.length && stack[stack.length - 1] !== '..') {
-        stack.pop();
-      } else if (stack.length > 0 || !parsed.absolute) {
-        stack.push(segment);
-      }
-    } else {
+    if (segment === '..' && stack.length && stack[stack.length - 1] !== '..') {
+      stack.pop();
+    } else if (segment !== '..' || !parsed.absolute) {
       stack.push(segment);
     }
   }

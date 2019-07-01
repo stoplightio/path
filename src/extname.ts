@@ -1,8 +1,11 @@
 import { normalizeParsed } from './normalize';
-import { parse, parseBase } from './parse';
+import { parse } from './parse';
+import { parseBase } from './parseBase';
 
 export const extname = (path: string) => {
   const parsed = normalizeParsed(parse(path));
-  const { ext } = parseBase(parsed.base);
+  const base = parsed.path.pop();
+  if (!base) return '';
+  const { ext } = parseBase(base);
   return ext;
 };

@@ -25,8 +25,7 @@ RemotePath
       origin,
       absolute: true,
       ...root,
-      path: [],
-      base: ''
+      path: []
     }
   }
 
@@ -113,10 +112,8 @@ RelativePath
 
 PathWrapper
   = path:PathSeq {
-    let base = path.pop();
     return {
       path,
-      base,
     }
   }
 

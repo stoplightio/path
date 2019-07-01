@@ -9,12 +9,6 @@ export function normalize(filepath: string) {
 export function normalizeParsed(parsed: IPath): IPath {
   let path = parsed.path;
 
-  // If the base is '..' promote it to a path segment
-  if (parsed.base === '..' || parsed.base === '.') {
-    path.push(parsed.base);
-    parsed.base = '';
-  }
-
   // Replace consecutive '/' and replace '/./' with '/'
   path = path.filter(segment => segment !== '' && segment !== '.');
 
@@ -33,12 +27,5 @@ export function normalizeParsed(parsed: IPath): IPath {
   }
   parsed.path = stack;
 
-  // If the base is empty, demote last path segment to base.
-  if (parsed.base === '' || parsed.base === '.') {
-    const segment = parsed.path.pop();
-    if (segment) {
-      parsed.base = segment;
-    }
-  }
   return parsed;
 }

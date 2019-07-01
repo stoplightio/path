@@ -4,5 +4,4 @@ export interface IPath {
   absolute: boolean;
   drive: string | null;
   path: string[];
-  base: string;
 }

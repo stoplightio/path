@@ -3,6 +3,7 @@ export * from './dirname';
 export * from './extname';
 export * from './format';
 export * from './isAbsolute';
+export * from './isURL';
 export * from './join';
 export { normalize } from './normalize';
 export { parse } from './parse';

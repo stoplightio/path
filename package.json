@@ -20,7 +20,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "sl-scripts build",
+    "build": "pegjs --optimize size src/grammar.pegjs && sl-scripts build",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts?'",
     "lint.fix": "yarn lint --fix",
@@ -41,7 +41,9 @@
     "@types/jest": "24.x.x",
     "jest": "24.x.x",
     "nodemon": "1.x.x",
+    "pegjs": "^0.10.0",
     "prettier": "1.x.x",
+    "rollup-plugin-commonjs": "^10.0.1",
     "ts-jest": "24.x.x",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.x",

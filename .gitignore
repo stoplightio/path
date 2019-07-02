@@ -32,3 +32,4 @@
 *.log*
 *-debug.log*
 *-error.log*
+src/grammar.js

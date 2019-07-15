@@ -11,7 +11,7 @@ describe('posix basename', () => {
     ${'////'}          | ${''}
     ${'//a'}           | ${'a'}
     ${'foo'}           | ${'foo'}
-  `('computes dirname of $path', ({ path, expected }) => {
+  `('computes basename of $path', ({ path, expected }) => {
     expect(basename(path)).toBe(expected);
   });
 });
@@ -50,7 +50,21 @@ describe('win32 basename', () => {
     ${'\\\\unc\\share\\foo\\bar\\baz'}   | ${'baz'}
     ${'\\\\unc\\share\\foo\\bar\\baz.x'} | ${'baz.x'}
     ${'foo'}                             | ${'foo'}
-  `('computes dirname of $path', ({ path, expected }) => {
+  `('computes basename of $path', ({ path, expected }) => {
     expect(basename(path)).toBe(expected);
+  });
+});
+
+describe('basename with removeExtension arg', () => {
+  it.each`
+    path               | removeExtension | expected
+    ${'/a/b/foo.json'} | ${'.json'}      | ${'foo'}
+    ${'/a/b/foo.txt'}  | ${'.json'}      | ${'foo.txt'}
+    ${'/a/b/foo.json'} | ${true}         | ${'foo'}
+    ${'/a/b/foo.txt'}  | ${true}         | ${'foo'}
+    ${'/a/b/foo.json'} | ${false}        | ${'foo.json'}
+    ${'/a/b/foo.txt'}  | ${false}        | ${'foo.txt'}
+  `('computes basename of $path, $removeExtension', ({ path, removeExtension, expected }) => {
+    expect(basename(path, removeExtension)).toBe(expected);
   });
 });

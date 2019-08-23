@@ -13,3 +13,4 @@ export * from './sep';
 export * from './startsWithWindowsDrive';
 export * from './toFSPath';
 export * from './types';
+export * from './srn';

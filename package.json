@@ -20,14 +20,15 @@
     "node": ">=8"
   },
   "scripts": {
-    "build": "pegjs --optimize size src/grammar.pegjs && sl-scripts build",
+    "build": "yarn build.grammar && sl-scripts build",
+    "build.grammar": "pegjs --optimize size src/grammar.pegjs",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts?'",
     "lint.fix": "yarn lint --fix",
     "release": "sl-scripts release",
     "release.docs": "sl-scripts release:docs",
     "release.dryRun": "sl-scripts release --dry-run --debug",
-    "test": "yarn build && jest",
+    "test": "yarn build.grammar && jest",
     "test.prod": "yarn lint && yarn test --coverage --maxWorkers=2",
     "test.update": "yarn test --updateSnapshot",
     "test.watch": "yarn test --watch",

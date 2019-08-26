@@ -1,14 +1,18 @@
 import { deserializeSrn, serializeSrn } from '../srn';
 
 describe('deserializeSrn', () => {
+  it('should work deserialize org srns', () => {
+    expect(deserializeSrn('sl/org')).toEqual({
+      shortcode: 'sl',
+      orgSlug: 'org',
+    });
+  });
+
   it('should work deserialize project srns', () => {
     expect(deserializeSrn('sl/org/project')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',
       projectSlug: 'project',
-      uri: '',
-      ext: '',
-      file: '',
     });
   });
 
@@ -18,20 +22,28 @@ describe('deserializeSrn', () => {
       orgSlug: 'org',
       projectSlug: 'project',
       uri: '/reference/todos/openapi.yml',
-      file: '/reference/todos/openapi.yml',
+      file: 'openapi.yml',
       ext: '.yml',
     });
   });
 });
 
 describe('serializeSrn', () => {
+  it('should serialize org srns', () => {
+    expect(
+      serializeSrn({
+        shortcode: 'sl',
+        orgSlug: 'org',
+      }),
+    ).toEqual('sl/org');
+  });
+
   it('should serialize project srns', () => {
     expect(
       serializeSrn({
         shortcode: 'sl',
         orgSlug: 'org',
         projectSlug: 'project',
-        uri: '/',
       }),
     ).toEqual('sl/org/project');
   });

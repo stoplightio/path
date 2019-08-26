@@ -3,7 +3,7 @@ import { extname } from './extname';
 export interface IDeserializedSrn {
   shortcode: string;
   orgSlug: string;
-  projectSlug: string;
+  projectSlug?: string;
   uri?: string;
   file?: string;
   ext?: string;
@@ -12,11 +12,16 @@ export interface IDeserializedSrn {
 export function deserializeSrn(srn: string): IDeserializedSrn {
   const [shortcode, orgSlug, projectSlug, ...uriParts] = srn.split('/');
 
-  const uri = uriParts.length ? `/${uriParts.join('/')}` : ``;
-  const file = uri
-    .split(/(\.(?:json|ya?ml|md))/)
-    .slice(0, -1)
-    .join('');
+  const uri = uriParts.length ? `/${uriParts.join('/')}` : undefined;
+
+  let file;
+  let ext;
+  if (uri) {
+    const [path] = uri.split(/(\.(?:json|ya?ml|md))/).slice(0, -1);
+
+    ext = extname(uri);
+    file = `${path.split('/').pop()}${ext}`;
+  }
 
   return {
     shortcode,
@@ -24,7 +29,7 @@ export function deserializeSrn(srn: string): IDeserializedSrn {
     projectSlug,
     uri,
     file,
-    ext: extname(file),
+    ext,
   };
 }
 

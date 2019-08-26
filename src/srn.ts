@@ -14,7 +14,7 @@ export function deserializeSrn(srn: string): IDeserializedSrn {
 
   const uri = uriParts.length ? `/${uriParts.join('/')}` : ``;
   const file = uri
-    .split(/(.json|.yaml|.yml|.md)/)
+    .split(/(\.(?:json|ya?ml|md))/)
     .slice(0, -1)
     .join('');
 

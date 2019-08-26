@@ -1,3 +1,4 @@
+import { basename } from './basename';
 import { extname } from './extname';
 
 export interface IDeserializedSrn {
@@ -17,10 +18,8 @@ export function deserializeSrn(srn: string): IDeserializedSrn {
   let file;
   let ext;
   if (uri) {
-    const [path] = uri.split(/(\.(?:json|ya?ml|md))/).slice(0, -1);
-
     ext = extname(uri);
-    file = `${path.split('/').pop()}${ext}`;
+    file = basename(uri);
   }
 
   return {

@@ -1,5 +1,4 @@
-import { basename } from './basename';
-import { extname } from './extname';
+import { parseBase } from './parseBase';
 
 export interface IDeserializedSrn {
   shortcode: string;
@@ -18,8 +17,11 @@ export function deserializeSrn(srn: string): IDeserializedSrn {
   let file;
   let ext;
   if (uri) {
-    ext = extname(uri);
-    file = basename(uri);
+    file = uriParts.find(part => part.includes('.'));
+
+    if (file) {
+      ext = parseBase(file).ext;
+    }
   }
 
   return {

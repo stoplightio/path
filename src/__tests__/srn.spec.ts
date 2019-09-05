@@ -26,6 +26,17 @@ describe('deserializeSrn', () => {
       ext: '.yml',
     });
   });
+
+  it('should work deserialize file node srns', () => {
+    expect(deserializeSrn('sl/org/project/reference/todos/openapi.yml/components/schemas/pet')).toEqual({
+      shortcode: 'sl',
+      orgSlug: 'org',
+      projectSlug: 'project',
+      uri: '/reference/todos/openapi.yml/components/schemas/pet',
+      file: 'openapi.yml',
+      ext: '.yml',
+    });
+  });
 });
 
 describe('serializeSrn', () => {

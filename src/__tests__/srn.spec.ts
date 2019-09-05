@@ -37,6 +37,17 @@ describe('deserializeSrn', () => {
       ext: '.yml',
     });
   });
+
+  it('should work deserialize file node srns with dot in uri path', () => {
+    expect(deserializeSrn('sl/org/project/reference/stoplight/openapi.v1.yaml/paths/~1nodes.get/get')).toEqual({
+      shortcode: 'sl',
+      orgSlug: 'org',
+      projectSlug: 'project',
+      uri: '/reference/stoplight/openapi.v1.yaml/paths/~1nodes.get/get',
+      file: 'openapi.v1.yaml',
+      ext: '.yaml',
+    });
+  });
 });
 
 describe('serializeSrn', () => {

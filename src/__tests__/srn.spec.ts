@@ -1,14 +1,14 @@
 import { deserializeSrn, serializeSrn } from '../srn';
 
 describe('deserializeSrn', () => {
-  it('should work deserialize org srns', () => {
+  it('should work deserialize org srn', () => {
     expect(deserializeSrn('sl/org')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',
     });
   });
 
-  it('should work deserialize project srns', () => {
+  it('should work deserialize project srn', () => {
     expect(deserializeSrn('sl/org/project')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',
@@ -16,7 +16,7 @@ describe('deserializeSrn', () => {
     });
   });
 
-  it('should work deserialize node srns', () => {
+  it('should work deserialize node srn', () => {
     expect(deserializeSrn('sl/org/project/reference/todos/openapi.yml')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',
@@ -27,7 +27,18 @@ describe('deserializeSrn', () => {
     });
   });
 
-  it('should work deserialize file node srns', () => {
+  it('should work deserialize node srn two dots in file', () => {
+    expect(deserializeSrn('sl/org/project/reference/todos/openapi.v1.yml')).toEqual({
+      shortcode: 'sl',
+      orgSlug: 'org',
+      projectSlug: 'project',
+      uri: '/reference/todos/openapi.v1.yml',
+      file: 'openapi.v1.yml',
+      ext: '.yml',
+    });
+  });
+
+  it('should work deserialize node srn with extended uri parts', () => {
     expect(deserializeSrn('sl/org/project/reference/todos/openapi.yml/components/schemas/pet')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',
@@ -38,7 +49,7 @@ describe('deserializeSrn', () => {
     });
   });
 
-  it('should work deserialize file node srns with dot in uri path', () => {
+  it('should work deserialize file node srn with dot in uri path', () => {
     expect(deserializeSrn('sl/org/project/reference/stoplight/openapi.v1.yaml/paths/~1nodes.get/get')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',

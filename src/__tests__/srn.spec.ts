@@ -49,7 +49,7 @@ describe('deserializeSrn', () => {
     });
   });
 
-  it('should work deserialize file node srn with dot in uri path', () => {
+  it('should work deserialize node srn with dot in uri path', () => {
     expect(deserializeSrn('sl/org/project/reference/stoplight/openapi.v1.yaml/paths/~1nodes.get/get')).toEqual({
       shortcode: 'sl',
       orgSlug: 'org',

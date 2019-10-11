@@ -15,6 +15,12 @@ describe('join', () => {
     expect(join('https://foo.test', 'com', 'baz')).toEqual('https://foo.test/com/baz');
   });
 
+  it('handles absolute segments', () => {
+    expect(join('/foo/pets', '/bar')).toEqual('/foo/pets/bar');
+    expect(join('/foo', 'a', '/test/baz')).toEqual('/foo/a/test/baz');
+    expect(join('/foo', 'a', '/test', '\\baz')).toEqual('/foo/a/test/baz');
+  });
+
   it.each`
     args                             | result
     ${['.', 'x/b', '..', 'b/c.js']}  | ${'x/b/c.js'}
@@ -56,21 +62,5 @@ describe('join', () => {
     ${['/', 'foo']}                  | ${'/foo'}
   `('joins $args', ({ args, result }) => {
     expect(join(...args)).toBe(result);
-  });
-
-  it.each`
-    args
-    ${['.', '/./', '.']}
-    ${['.', '/////./', '.']}
-    ${['', '/foo']}
-    ${['', '', '/foo']}
-    ${[' ', '/']}
-    ${['/', '/foo']}
-    ${['/', '//foo']}
-    ${['/', '', '/foo']}
-    ${['', '/', 'foo']}
-    ${['', '/', '/foo']}
-  `('join($args) to throw', ({ args }) => {
-    expect(() => join(...args)).toThrow();
   });
 });

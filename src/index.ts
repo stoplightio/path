@@ -11,6 +11,7 @@ export * from './relative';
 export * from './resolve';
 export * from './sep';
 export * from './startsWithWindowsDrive';
+export * from './stripRoot';
 export * from './toFSPath';
 export * from './types';
 export * from './srn';

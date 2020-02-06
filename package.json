@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "yarn build.grammar && sl-scripts build",
-    "build.grammar": "pegjs --optimize size src/grammar.pegjs",
+    "build.grammar": "pegjs --optimize speed src/grammar.pegjs",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts?'",
     "lint.fix": "yarn lint --fix",

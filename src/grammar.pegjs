@@ -75,20 +75,20 @@ AbsolutePath
 }
 
   Root
-    = PosixRoot
-    / WindowsRoot
+    = WindowsRoot
+    / PosixRoot
+
+    WindowsRoot
+      = Sep ? drive:[A-Za-z] ":" Sep {
+        return {
+          drive: drive.toLowerCase() + ':'
+        }
+      }
 
     PosixRoot
       = Sep {
         return {
           drive: null
-        }
-      }
-
-    WindowsRoot
-      = drive:[A-Za-z] ":" Sep {
-        return {
-          drive: drive.toLowerCase() + ':'
         }
       }
 

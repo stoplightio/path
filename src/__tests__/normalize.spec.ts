@@ -12,9 +12,11 @@ describe('normalize', () => {
 
   describe('normalizes capitalization of Windows drive letters', () => {
     it.each`
-      path              | result
-      ${'C:\\foo\\bar'} | ${'c:/foo/bar'}
-      ${'/C:/foo/bar'}  | ${'c:/foo/bar'}
+      path                    | result
+      ${'C:\\foo\\bar'}       | ${'c:/foo/bar'}
+      ${'/C:/foo/bar'}        | ${'c:/foo/bar'}
+      ${'file:///C:/foo/bar'} | ${'c:/foo/bar'}
+      ${'file://C:/foo/bar'}  | ${'c:/foo/bar'}
     `("normalize('$path')", ({ path, result }) => {
       expect(normalize(path)).toEqual(result);
     });

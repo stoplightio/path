@@ -15,3 +15,4 @@ export * from './stripRoot';
 export * from './toFSPath';
 export * from './types';
 export * from './srn';
+export * from './split';

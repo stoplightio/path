@@ -1,6 +1,6 @@
-import { format } from './format';
-import { parse } from './parse';
-import { IPath } from './types';
+import { format } from './format.js';
+import { parse } from './parse.js';
+import { IPath } from './types.js';
 
 export function normalize(filepath: string) {
   return format(normalizeParsed(parse(filepath)));

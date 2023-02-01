@@ -1,4 +1,4 @@
-import { dirname } from '../dirname';
+import { dirname } from '../dirname.js';
 
 describe('posix dirname', () => {
   it.each`

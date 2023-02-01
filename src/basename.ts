@@ -1,6 +1,6 @@
-import { normalizeParsed } from './normalize';
-import { parse } from './parse';
-import { parseBase } from './parseBase';
+import { normalizeParsed } from './normalize.js';
+import { parse } from './parse.js';
+import { parseBase } from './parseBase.js';
 
 export const basename = (path: string, removeExtension?: string | boolean) => {
   const parsed = normalizeParsed(parse(path));

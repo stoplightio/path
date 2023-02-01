@@ -1,6 +1,6 @@
-import { format } from './format';
-import { normalizeParsed } from './normalize';
-import { parse } from './parse';
+import { format } from './format.js';
+import { normalizeParsed } from './normalize.js';
+import { parse } from './parse.js';
 
 export function relative(fromDir: string, to: string): string {
   const toParsed = normalizeParsed(parse(to));

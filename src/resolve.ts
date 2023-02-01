@@ -1,7 +1,7 @@
-import { format } from './format';
-import { join } from './join';
-import { normalizeParsed } from './normalize';
-import { parse } from './parse';
+import { format } from './format.js';
+import { join } from './join.js';
+import { normalizeParsed } from './normalize.js';
+import { parse } from './parse.js';
 
 export function resolve(...pathSegments: string[]) {
   // Edge case

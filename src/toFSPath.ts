@@ -1,1 +1,1 @@
-export { normalize as toFSPath } from './normalize';
+export { normalize as toFSPath } from './normalize.js';

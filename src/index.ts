@@ -3,6 +3,7 @@ export * from './dirname.js';
 export * from './extname.js';
 export * from './format.js';
 export * from './isAbsolute.js';
+export * from './isStoplightURI.js';
 export * from './isURL.js';
 export * from './join.js';
 export { normalize } from './normalize.js';

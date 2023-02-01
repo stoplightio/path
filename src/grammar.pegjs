@@ -32,6 +32,7 @@ RemotePath
   RemoteProtocol
     = HttpProtocol
     / HttpsProtocol
+    / StoplightProtocol
 
     HttpProtocol
       = raw:"http://"i {
@@ -41,7 +42,12 @@ RemotePath
     HttpsProtocol
       = raw:"https://"i {
       return 'https'
-    } 
+    }
+
+    StoplightProtocol
+      = raw:"stoplight://"i {
+      return 'stoplight'
+    }
     
   Origin
     = $ NotSep+

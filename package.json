@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "yarn build.grammar && sl-scripts build",
-    "build.grammar": "pegjs --optimize speed src/grammar.pegjs",
+    "build.grammar": "peggy src/grammar.pegjs",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts?'",
     "lint.fix": "yarn lint --fix",
@@ -43,7 +43,7 @@
     "@types/jest": "24.x.x",
     "jest": "24.x.x",
     "nodemon": "1.x.x",
-    "pegjs": "^0.10.0",
+    "peggy": "^2.0.1",
     "prettier": "1.x.x",
     "rollup-plugin-commonjs": "^10.0.1",
     "ts-jest": "24.x.x",

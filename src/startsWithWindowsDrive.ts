@@ -1,4 +1,4 @@
-import { parse } from './parse';
+import { parse } from './parse.js';
 
 export const startsWithWindowsDrive = (str: string) => {
   const parsed = parse(str);

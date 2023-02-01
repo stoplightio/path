@@ -1,4 +1,4 @@
-import { isAbsolute } from '../isAbsolute';
+import { isAbsolute } from '../isAbsolute.js';
 
 describe('isAbsolute', () => {
   it.each([

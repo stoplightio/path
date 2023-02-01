@@ -1,7 +1,7 @@
-import { format } from './format';
-import { normalizeParsed } from './normalize';
-import { parse } from './parse';
-import { IPath } from './types';
+import { format } from './format.js';
+import { normalizeParsed } from './normalize.js';
+import { parse } from './parse.js';
+import { IPath } from './types.js';
 
 export const join = (...parts: string[]) => {
   // edge case

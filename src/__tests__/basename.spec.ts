@@ -1,4 +1,4 @@
-import { basename } from '../basename';
+import { basename } from '../basename.js';
 
 describe('posix basename', () => {
   it.each`

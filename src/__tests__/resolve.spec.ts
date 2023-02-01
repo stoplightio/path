@@ -1,4 +1,4 @@
-import { resolve } from '../resolve';
+import { resolve } from '../resolve.js';
 
 describe('resolve', () => {
   describe('handles POSIX paths', () => {

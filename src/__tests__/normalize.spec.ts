@@ -1,4 +1,4 @@
-import { normalize } from '../';
+import { normalize } from '../normalize.js';
 
 describe('normalize', () => {
   describe('replaces Windows-like slashes with POSIX-compatible ones', () => {

@@ -1,4 +1,4 @@
-import { startsWithWindowsDrive } from '../';
+import { startsWithWindowsDrive } from '../startsWithWindowsDrive.js';
 
 describe('startsWithWindowsDrive', () => {
   it.each(['c:\\foo\\bar.json', 'c:\\', 'c:/', 'c:/', '/C:/', '/C:\\', 'c:/foo/bar.json', 'c:\\', 'Z:\\', 'A:/'])(

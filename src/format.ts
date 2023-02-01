@@ -1,4 +1,4 @@
-import { IPath } from './types';
+import { IPath } from './types.js';
 
 export function format(parsed: IPath): string {
   let path = '';

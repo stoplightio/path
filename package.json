@@ -12,16 +12,28 @@
     "url": "https://github.com/stoplightio/path"
   },
   "license": "Apache-2.0",
-  "main": "src/index.ts",
+  "type": "module",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    }
+  },
   "files": [
     "**/*"
   ],
   "engines": {
-    "node": ">=8"
+    "node": "^12.20 || >=14.13"
   },
   "scripts": {
-    "build": "yarn build.grammar && sl-scripts build",
-    "build.grammar": "peggy src/grammar.pegjs",
+    "build": "rimraf dist && yarn build.grammar && yarn build.cjs && yarn build.esm",
+    "build.esm": "tsc --outDir dist/esm --declarationDir dist/types",
+    "build.cjs": "tsc --outDir dist/cjs --module commonjs --declarationDir dist/types",
+    "build.grammar": "peggy --format=es src/grammar.pegjs",
     "commit": "git-cz",
     "lint": "eslint 'src/**/*.ts' && prettier --check 'src/**/*.ts'",
     "lint.fix": "yarn lint --fix",
@@ -50,6 +62,7 @@
     "nodemon": "1.x.x",
     "peggy": "^2.0.1",
     "prettier": "^2.8.3",
+    "rimraf": "^4.1.2",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5"
   },

@@ -1,4 +1,4 @@
-import { parse } from './parse';
+import { parse } from './parse.js';
 
 export function isURL(filepath: string) {
   const parsed = parse(filepath);

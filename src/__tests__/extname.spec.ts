@@ -1,4 +1,4 @@
-import { extname } from '../extname';
+import { extname } from '../extname.js';
 
 describe('extname', () => {
   it.each`

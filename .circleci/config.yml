@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:lts
     steps:
       - checkout
       - run:
@@ -25,7 +25,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:lts
     steps:
       - checkout
       - run: yarn
@@ -33,7 +33,7 @@ jobs:
 
   release:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:lts
     steps:
       - checkout
       - run: yarn

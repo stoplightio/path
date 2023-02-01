@@ -1,4 +1,4 @@
-import { deserializeSrn, serializeSrn } from '../srn';
+import { deserializeSrn, serializeSrn } from '../srn.js';
 
 describe('deserializeSrn', () => {
   it('should work deserialize org srn', () => {

@@ -1,4 +1,4 @@
-import { relative } from '../relative';
+import { relative } from '../relative.js';
 
 describe('relative', () => {
   describe('handles POSIX paths', () => {

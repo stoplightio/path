@@ -1,4 +1,4 @@
-import { parseBase } from './parseBase';
+import { parseBase } from './parseBase.js';
 
 export interface IDeserializedSrn {
   shortcode: string;

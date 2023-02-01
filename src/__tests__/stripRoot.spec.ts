@@ -1,4 +1,4 @@
-import { stripRoot } from '../stripRoot';
+import { stripRoot } from '../stripRoot.js';
 
 describe('stripRoot', () => {
   it.each(['foo', 'test/a', 'a/b'])('does not alter "%s" path', path => {

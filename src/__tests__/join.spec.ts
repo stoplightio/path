@@ -1,4 +1,4 @@
-import { join } from '../';
+import { join } from '../join.js';
 
 describe('join', () => {
   it('does some basic resolving', () => {

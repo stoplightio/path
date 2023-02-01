@@ -37,7 +37,7 @@
     "build.grammar": "peggy --format=es src/grammar.pegjs",
     "commit": "git-cz",
     "lint": "eslint 'src/**/*.ts' && prettier --check 'src/**/*.ts'",
-    "lint.fix": "yarn lint --fix",
+    "lint.fix": "eslint 'src/**/*.ts' --fix && prettier --write 'src/**/*.ts'",
     "release": "semantic-release",
     "pretest": "yarn build.grammar",
     "test": "jest",

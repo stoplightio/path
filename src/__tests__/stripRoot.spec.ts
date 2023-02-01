@@ -1,7 +1,7 @@
 import { stripRoot } from '../stripRoot';
 
 describe('stripRoot', () => {
-  it.each(['foo', 'test/a', 'a/b'])('does not alter "%s" path', (path) => {
+  it.each(['foo', 'test/a', 'a/b'])('does not alter "%s" path', path => {
     expect(stripRoot(path)).toEqual(path);
   });
 

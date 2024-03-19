@@ -12,7 +12,6 @@
     "url": "https://github.com/stoplightio/path"
   },
   "license": "Apache-2.0",
-  "type": "commonjs",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
